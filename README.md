@@ -1,6 +1,8 @@
 # -PyTorch_YOLOv4-tiny
 This project is based on WongKinYiu / PyTorch_YOLOv4 with some modification
 
+- You can use this project to train 416x416 YOLOv4-tiny.
+
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
 ### 12/1更新：
