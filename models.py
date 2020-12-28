@@ -50,7 +50,7 @@ def create_modules(module_defs, img_size, cfg):
             elif mdef['activation'] == 'mish':
                 modules.add_module('activation', Mish())
             elif mdef['activation'] == 'frelu':
-                modules.add_module('activation', FReLU())
+                modules.add_module('activation', FReLU(in_channels=output_filters[-1]))
 
         elif mdef['type'] == 'BatchNorm2d':
             filters = output_filters[-1]
