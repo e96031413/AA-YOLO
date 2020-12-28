@@ -4,6 +4,16 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
+
+### 12/28更新：
+新增以下三篇Paper的程式碼
+
+SE Block paper : [arxiv.org/abs/1709.01507](arxiv.org/abs/1709.01507)
+
+CBAM Block paper : [arxiv.org/abs/1807.06521](arxiv.org/abs/1807.06521)
+
+ECA Block paper : [arxiv.org/abs/1910.03151](arxiv.org/abs/1910.03151)
+
 ### 12/1更新：
 修改了PyTorch_YOLOv4的u3_preview當中，models.py第355行(支援pre-trained weight)、train.py第67行(支援32倍數的解析度)、dataset.py第262及267行(處理dataset相對路徑的問題)
 models.py line 355
@@ -107,3 +117,4 @@ python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.
 * [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 * [https://github.com/ultralytics/yolov3](https://github.com/ultralytics/yolov3)
 * [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
+* [HaloTrouvaille/YOLO-Multi-Backbones-Attention](https://github.com/HaloTrouvaille/YOLO-Multi-Backbones-Attention/tree/1f425d379783b6d132b44f14ecfd251d8e2448fa)
