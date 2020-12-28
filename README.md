@@ -6,7 +6,7 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
 ### 12/28更新：
-新增以下四篇Paper的程式碼(在models.py)
+新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
 
 SE Block paper : [arxiv.org/abs/1709.01507](arxiv.org/abs/1709.01507)
 
