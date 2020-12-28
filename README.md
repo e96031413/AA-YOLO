@@ -6,13 +6,16 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
 ### 12/28更新：
-新增以下三篇Paper的程式碼
+新增以下四篇Paper的程式碼(在models.py)
 
 SE Block paper : [arxiv.org/abs/1709.01507](arxiv.org/abs/1709.01507)
 
 CBAM Block paper : [arxiv.org/abs/1807.06521](arxiv.org/abs/1807.06521)
 
 ECA Block paper : [arxiv.org/abs/1910.03151](arxiv.org/abs/1910.03151)
+
+Funnel Activation for Visual Recognition : [arxiv.org/abs/2007.11824](arxiv.org/abs/2007.11824)
+
 
 ### 12/1更新：
 修改了PyTorch_YOLOv4的u3_preview當中，models.py第355行(支援pre-trained weight)、train.py第67行(支援32倍數的解析度)、dataset.py第262及267行(處理dataset相對路徑的問題)
