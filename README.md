@@ -10,7 +10,9 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 [Feature-request: YOLOv4-tiny #1350](https://github.com/ultralytics/yolov3/issues/1350#issuecomment-651602149)
 
-新增ReLU6、ReLU、DepthWise2D CNN、ShuffleNetv2(在models.py、utils/layers.py)
+新增ReLU6(在utils/layers.py)、ReLU(在utils/layers.py)、DepthWise Convolution(在models.py)、ShuffleNetUnit(在models.py)
+
+新增[DO-Conv: Depthwise Over-parameterized Convolutional Layer](https://arxiv.org/abs/2006.12030)(在utils/layers.py)
 
 ### 12/28更新：
 新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
