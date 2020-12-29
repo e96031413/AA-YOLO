@@ -10,6 +10,8 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 [Feature-request: YOLOv4-tiny #1350](https://github.com/ultralytics/yolov3/issues/1350#issuecomment-651602149)
 
+新增ReLU6、ReLU、DepthWise2D CNN、ShuffleNetv2(在models.py、utils/layers.py)
+
 ### 12/28更新：
 新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
 
@@ -126,3 +128,4 @@ python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.
 * [https://github.com/ultralytics/yolov3](https://github.com/ultralytics/yolov3)
 * [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
 * [HaloTrouvaille/YOLO-Multi-Backbones-Attention](https://github.com/HaloTrouvaille/YOLO-Multi-Backbones-Attention/tree/1f425d379783b6d132b44f14ecfd251d8e2448fa)
+* [SpursLipu/YOLOv3v4-ModelCompression-MultidatasetTraining-Multibackbone](https://github.com/SpursLipu/YOLOv3v4-ModelCompression-MultidatasetTraining-Multibackbone)
