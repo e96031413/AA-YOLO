@@ -154,6 +154,12 @@ class Swish(nn.Module):
     def forward(self, x):
         return x * torch.sigmoid(x)
 
+class ReLU6(nn.Module):
+    def __init__(self):
+        super(ReLU6, self).__init__()
+
+    def forward(self, x):
+        return F.relu6(x, inplace=True)
 
 class HardSwish(nn.Module):  # https://arxiv.org/pdf/1905.02244.pdf
     def forward(self, x):
