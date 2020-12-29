@@ -5,6 +5,11 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
+### 12/29更新：
+新增YOLOv4-tiny的RouteGroup功能
+
+[Feature-request: YOLOv4-tiny #1350](https://github.com/ultralytics/yolov3/issues/1350#issuecomment-651602149)
+
 ### 12/28更新：
 新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
 
