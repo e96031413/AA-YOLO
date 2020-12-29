@@ -81,7 +81,16 @@ def create_modules(module_defs, img_size, cfg):
             layers = mdef['layers']
             filters = sum([output_filters[l + 1 if l > 0 else l] for l in layers])
             routs.extend([i + l if l < 0 else l for l in layers])
-            modules = FeatureConcat(layers=layers)
+            # RouteGroup implementation      ref:https://github.com/ultralytics/yolov3/issues/1350#issuecomment-651642379
+            if 'groups' in mdef:
+                groups = mdef["groups"]
+                group_id = mdef["group_id"]
+                modules = RouteGroup(layers=layers,
+                                    groups=groups,
+                                    group_id=group_id)
+                filters //= groups
+            else:
+                modules = FeatureConcat(layers=layers)
 
         elif mdef['type'] == 'route_lhalf':  # nn.Sequential() placeholder for 'route' layer
             layers = mdef['layers']
@@ -318,7 +327,7 @@ class Darknet(nn.Module):
 
         for i, module in enumerate(self.module_list):
             name = module.__class__.__name__
-            if name in ['WeightedFeatureFusion', 'FeatureConcat', 'FeatureConcat_l']:  # sum, concat
+            if name in ['WeightedFeatureFusion', 'FeatureConcat', 'FeatureConcat_l', 'RouteGroup']:  # sum, concat
                 if verbose:
                     l = [i - 1] + module.layers  # layers
                     sh = [list(x.shape)] + [list(out[i].shape) for i in module.layers]  # shapes
@@ -582,3 +591,23 @@ class ECALayer(nn.Module):
         # Multi-scale information fusion
         y = self.sigmoid(y)
         return x * y.expand_as(x)
+    
+class RouteGroup(nn.Module):
+
+    def __init__(self, layers, groups, group_id):
+        super(RouteGroup, self).__init__()
+        self.layers = layers
+        self.multi = len(layers) > 1
+        self.groups = groups
+        self.group_id = group_id
+
+    def forward(self, x, outputs):
+        if self.multi:
+            outs = []
+            for layer in self.layers:
+                out = torch.chunk(outputs[layer], self.groups, dim=1)
+                outs.append(out[self.group_id])
+            return torch.cat(outs, dim=1)
+        else:
+            out = torch.chunk(outputs[self.layers[0]], self.groups, dim=1)
+            return out[self.group_id]
