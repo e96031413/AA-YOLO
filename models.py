@@ -47,11 +47,46 @@ def create_modules(module_defs, img_size, cfg):
                 modules.add_module('activation', nn.LeakyReLU(0.1, inplace=True))
             elif mdef['activation'] == 'swish':
                 modules.add_module('activation', Swish())
+            elif mdef['activation'] == 'h_swish':
+                modules.add_module('activation', HardSwish())
             elif mdef['activation'] == 'mish':
                 modules.add_module('activation', Mish())
+            elif mdef['activation'] == 'relu6':
+                modules.add_module('activation', ReLU6())
+            elif mdef['activation'] == 'relu':
+                modules.add_module('activation', nn.ReLU(inplace=True))
             elif mdef['activation'] == 'frelu':
                 modules.add_module('activation', FReLU(c1=output_filters[-1]))
 
+        elif mdef['type'] == 'depthwise':
+            bn = int(mdef['batch_normalize'])
+            filters = int(mdef['filters'])
+            kernel_size = int(mdef['size'])
+            pad = (kernel_size - 1) // 2 if int(mdef['pad']) else 0
+            
+            modules.add_module('DepthWise2d', nn.Conv2d(in_channels=output_filters[-1],
+                                                            out_channels=filters,
+                                                            kernel_size=kernel_size,
+                                                            stride=int(mdef['stride']),
+                                                            padding=pad,
+                                                            groups=output_filters[-1],
+                                                            bias=not bn), )
+            if bn:
+                modules.add_module('BatchNorm2d', nn.BatchNorm2d(filters, momentum=0.1))
+            
+            if mdef['activation'] == 'leaky':
+                modules.add_module('activation', nn.LeakyReLU(0.1, inplace=True))
+            elif mdef['activation'] == 'swish':
+                modules.add_module('activation', Swish())
+            elif mdef['activation'] == 'h_swish':
+                modules.add_module('activation', HardSwish())
+            elif mdef['activation'] == 'mish':
+                modules.add_module('activation', Mish())
+            elif mdef['activation'] == 'relu6':
+                modules.add_module('activation', ReLU6())
+            elif mdef['activation'] == 'relu':
+                modules.add_module('activation', nn.ReLU(inplace=True))
+        
         elif mdef['type'] == 'BatchNorm2d':
             filters = output_filters[-1]
             modules = nn.BatchNorm2d(filters, momentum=0.03, eps=1E-4)
@@ -119,6 +154,31 @@ def create_modules(module_defs, img_size, cfg):
             modules.add_module('BatchNorm2d', nn.BatchNorm2d(output_channel, momentum=0.03, eps=1E-4))
             #modules = nn.Dropout(p=0.5)
         
+        # SS-YOLO: An Object Detection Algorithm based on YOLOv3 and ShuffleNet: https://ieeexplore.ieee.org/abstract/document/9085091
+        elif mdef['type'] == 'shuffleUnit':
+            in_channels = output_filters[-1]
+            filters = int(mdef['filters'])
+            stride = int(mdef['stride'])
+            
+            if mdef['activation'] == 'leaky':  # activation study https://github.com/ultralytics/yolov3/issues/441
+               activation = nn.LeakyReLU(0.1, inplace=True)
+            elif mdef['activation'] == 'swish':
+                activation = Swish()
+            elif mdef['activation'] == 'h_swish':
+                activation = HardSwish()
+            elif mdef['activation'] == 'mish':
+                activation = Mish()
+            elif mdef['activation'] == 'relu6':
+                activation = ReLU6()
+            elif mdef['activation'] == 'relu':
+                activation = nn.ReLU(inplace=True)
+            else:
+                activation = nn.LeakyReLU(0.1, inplace=True)
+                
+            modules.add_module('shuffleUnit', ShuffleUnit(in_channels = in_channels, 
+                                                          out_channels=filters,
+                                                          stride = stride, 
+                                                          activation = activation)
         elif mdef['type'] == 'se':
             modules.add_module('se',SELayer(output_filters[-1],reduction=int(mdef['reduction'])))
         elif mdef['type'] == 'ca':
@@ -611,3 +671,84 @@ class RouteGroup(nn.Module):
         else:
             out = torch.chunk(outputs[self.layers[0]], self.groups, dim=1)
             return out[self.group_id]
+
+
+# ShuffleNetv2
+
+# Channel Split
+def channel_split(x, split):
+
+    assert x.size(1) == split * 2
+    return torch.split(x, split, dim=1)
+
+# Channel Shuffle
+def channel_shuffle(x, groups):
+
+    batch_size, channels, height, width = x.size()
+    channels_per_group = int(channels / groups)
+
+    x = x.view(batch_size, groups, channels_per_group, height, width)
+    x = x.transpose(1, 2).contiguous()
+    x = x.view(batch_size, -1, height, width)
+
+    return x
+
+# Main ShuffleNet
+# ref: SS-YOLO: An Object Detection Algorithm based on YOLOv3 and ShuffleNet: https://ieeexplore.ieee.org/abstract/document/9085091
+class ShuffleUnit(nn.Module):
+
+    def __init__(self, in_channels, out_channels, stride, activation):
+        super().__init__()
+
+        self.stride = stride
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+
+        if stride != 1 or in_channels != out_channels:
+            self.residual = nn.Sequential(
+                nn.Conv2d(in_channels, in_channels, 1),
+                nn.BatchNorm2d(in_channels),
+                activation,
+                nn.Conv2d(in_channels, in_channels, 3, stride=stride, padding=1, groups=in_channels),
+                nn.BatchNorm2d(in_channels),
+                nn.Conv2d(in_channels, int(out_channels / 2), 1),
+                nn.BatchNorm2d(int(out_channels / 2)),
+                activation
+            )
+
+            self.shortcut = nn.Sequential(
+                nn.Conv2d(in_channels, in_channels, 3, stride=stride, padding=1, groups=in_channels),
+                nn.BatchNorm2d(in_channels),
+                nn.Conv2d(in_channels, int(out_channels / 2), 1),
+                nn.BatchNorm2d(int(out_channels / 2)),
+                activation
+            )
+        else:
+            self.shortcut = nn.Sequential()
+
+            in_channels = int(in_channels / 2)
+            self.residual = nn.Sequential(
+                nn.Conv2d(in_channels, in_channels, 1),
+                nn.BatchNorm2d(in_channels),
+                activation,
+                nn.Conv2d(in_channels, in_channels, 3, stride=stride, padding=1, groups=in_channels),
+                nn.BatchNorm2d(in_channels),
+                nn.Conv2d(in_channels, in_channels, 1),
+                nn.BatchNorm2d(in_channels),
+                activation
+            )
+
+    def forward(self, x):
+
+        if self.stride == 1 and self.out_channels == self.in_channels:
+            shortcut, residual = channel_split(x, int(self.in_channels / 2))
+        else:
+            shortcut = x
+            residual = x
+
+        shortcut = self.shortcut(shortcut)
+        residual = self.residual(residual)
+        x = torch.cat([shortcut, residual], dim=1)
+        x = channel_shuffle(x, 2)
+
+        return x
