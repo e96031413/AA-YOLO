@@ -14,6 +14,18 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 新增[DO-Conv: Depthwise Over-parameterized Convolutional Layer](https://arxiv.org/abs/2006.12030)(在utils/layers.py)
 
+**如何透過[u5版本](https://github.com/WongKinYiu/PyTorch_YOLOv4/tree/u5)的yaml檔案進行backbone修改？**
+
+[Yolov4 with Efficientnet b0-b7 Backbone](https://shihyung1221.medium.com/yolov4-with-efficientnet-b0-b7-backbone-529d0ce67cf0)
+
+[Yolov4 with MobileNet V2/V3 Backbone](https://shihyung1221.medium.com/yolov4-with-mobilenet-v2-v3-backbone-c18c0f10bc29)
+
+[Yolov4 with Resnext50/ SE-Resnet50 Backbones](https://shihyung1221.medium.com/yolov4-with-resnext50-se-resnet50-backbones-c324242c48f4)
+
+[Yolov4 with Resnet Backbone](https://shihyung1221.medium.com/yolov4-with-resnet-backbone-eb141b6e79ca)
+
+[Yolov4 with VGG Backbone](https://shihyung1221.medium.com/yolov4-with-vgg-backbone-ae0cedab4f0f)
+
 ### 12/28更新：
 新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
 
