@@ -5,6 +5,13 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
+### 01/10更新：
+新增支援yolov4.conv.137的Pre-trained weight功能(在model.py第456~456行)
+```
+    elif file == 'yolov4.conv.137':
+        cutoff = 137
+```
+
 ### 12/29更新：
 新增YOLOv4-tiny的RouteGroup功能
 
