@@ -153,32 +153,12 @@ def create_modules(module_defs, img_size, cfg):
                                   ))
             modules.add_module('BatchNorm2d', nn.BatchNorm2d(output_channel, momentum=0.03, eps=1E-4))
             #modules = nn.Dropout(p=0.5)
-        
         # SS-YOLO: An Object Detection Algorithm based on YOLOv3 and ShuffleNet: https://ieeexplore.ieee.org/abstract/document/9085091
         elif mdef['type'] == 'shuffleUnit':
             in_channels = output_filters[-1]
             filters = int(mdef['filters'])
             stride = int(mdef['stride'])
-            
-            if mdef['activation'] == 'leaky':  # activation study https://github.com/ultralytics/yolov3/issues/441
-               activation = nn.LeakyReLU(0.1, inplace=True)
-            elif mdef['activation'] == 'swish':
-                activation = Swish()
-            elif mdef['activation'] == 'h_swish':
-                activation = HardSwish()
-            elif mdef['activation'] == 'mish':
-                activation = Mish()
-            elif mdef['activation'] == 'relu6':
-                activation = ReLU6()
-            elif mdef['activation'] == 'relu':
-                activation = nn.ReLU(inplace=True)
-            else:
-                activation = nn.LeakyReLU(0.1, inplace=True)
-                
-            modules.add_module('shuffleUnit', ShuffleUnit(in_channels = in_channels, 
-                                                          out_channels=filters,
-                                                          stride = stride, 
-                                                          activation = activation)
+            modules.add_module('shuffleUnit', ShuffleUnit(in_channels = in_channels, out_channels=filters, stride = stride, activation = nn.LeakyReLU(0.1, inplace=True)))
         elif mdef['type'] == 'se':
             modules.add_module('se',SELayer(output_filters[-1],reduction=int(mdef['reduction'])))
         elif mdef['type'] == 'ca':
@@ -187,7 +167,6 @@ def create_modules(module_defs, img_size, cfg):
             modules.add_module('sa', SpatialAttention(kernel_size=int(mdef['kernelsize'])))
         elif mdef['type'] == 'eca':
             modules.add_module('eca', ECALayer())
-        
         
         elif mdef['type'] == 'yolo':
             yolo_index += 1
