@@ -19,8 +19,6 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 新增ReLU6(在utils/layers.py)、ReLU(在utils/layers.py)、DepthWise Convolution(在models.py)、ShuffleNetUnit(在models.py)
 
-新增[DO-Conv: Depthwise Over-parameterized Convolutional Layer](https://arxiv.org/abs/2006.12030)(在utils/layers.py)
-
 **如何透過[u5版本](https://github.com/WongKinYiu/PyTorch_YOLOv4/tree/u5)的yaml檔案進行backbone修改？**
 
 [Yolov4 with Efficientnet b0-b7 Backbone](https://shihyung1221.medium.com/yolov4-with-efficientnet-b0-b7-backbone-529d0ce67cf0)
