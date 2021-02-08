@@ -5,6 +5,8 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
+- View our experiment environment infos [here](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/experiment-info.md)
+
 ### 02/08更新：
 新增detect.py計算FPS功能 (detect.py的第8行、138~140行、171行)
 ```
