@@ -5,6 +5,21 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
+### 02/08更新：
+新增detect.py計算FPS功能 (detect.py的第8行、138~140行、171行)
+```
+# line 8
+FPS_avg = []
+
+# line 138~140
+from statistics import mean 
+print('%sDone. (FPS:%.1f)' % (s, 1/(t2 - t1)))
+FPS_avg.append(1/(t2-t1))
+
+# line 171
+print('Avg FPS: (%.1f)' % (mean(FPS_avg)))
+```
+
 ### 01/10更新：
 新增支援yolov4.conv.137的Pre-trained weight功能(在model.py第456~456行)
 ```
