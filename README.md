@@ -22,6 +22,18 @@ FPS_avg.append(1/(t2-t1))
 print('Avg FPS: (%.1f)' % (mean(FPS_avg)))
 ```
 
+解決test.py執行時遇到numpy必須要1.17版本及No module named 'pycocotools'的方法:
+```bash
+#移除所有numpy
+pip uninstall numpy
+#安裝1.17版本numpy
+pip install numpy==1.17
+#安裝pycocotools
+pip install pycocotools
+#執行test.py
+python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --iou-thr 0.7 --batch-size 8
+```
+
 ### 01/10更新：
 新增支援yolov4.conv.137的Pre-trained weight功能(在model.py第456~456行)
 ```
