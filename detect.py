@@ -5,6 +5,7 @@ from models import *  # set ONNX_EXPORT in models.py
 from utils.datasets import *
 from utils.utils import *
 
+FPS_avg = []
 
 def detect(save_img=False):
     img_size = (320, 192) if ONNX_EXPORT else opt.img_size  # (320, 192) or (416, 256) or (608, 352) for (height, width)
@@ -23,7 +24,7 @@ def detect(save_img=False):
     # Load weights
     attempt_download(weights)
     if weights.endswith('.pt'):  # pytorch format
-        model.load_state_dict(torch.load(weights, map_location=device)['model'])
+        model.load_state_dict(torch.load(weights, map_location=device)['model'],False)
     else:  # darknet format
         load_darknet_weights(model, weights)
 
@@ -104,6 +105,9 @@ def detect(save_img=False):
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
+            
+            
+            
             if webcam:  # batch_size >= 1
                 p, s, im0 = path[i], '%g: ' % i, im0s[i]
             else:
@@ -131,7 +135,10 @@ def detect(save_img=False):
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)])
 
             # Print time (inference + NMS)
-            print('%sDone. (%.3fs)' % (s, t2 - t1))
+            from statistics import mean 
+            print('%sDone. (FPS:%.1f)' % (s, 1/(t2 - t1)))
+            FPS_avg.append(1/(t2-t1))
+            
 
             # Stream results
             if view_img:
@@ -161,6 +168,7 @@ def detect(save_img=False):
             os.system('open ' + save_path)
 
     print('Done. (%.3fs)' % (time.time() - t0))
+    print('Avg FPS: (%.1f)' % (mean(FPS_avg)))
 
 
 if __name__ == '__main__':
