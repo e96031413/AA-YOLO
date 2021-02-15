@@ -140,7 +140,7 @@ pip install -r requirements.txt
 ## Training
 
 ```
-CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg yolov4-tiny.cfg --weights 'yolov4-tiny.conv.29' --name yolov4-tiny --img 416 416 416
+CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg yolov4-tiny.cfg --weights 'yolov4-tiny.conv.29' --name yolov4-tiny --img 416
 ```
 
 ## Testing
