@@ -133,6 +133,7 @@ darknet版本測出是40.2
 ## Requirements
 
 ```
+pip install git+https://github.com/thomasbrandon/mish-cuda/
 pip install -r requirements.txt
 ```
 ※ For running Mish models, please install https://github.com/thomasbrandon/mish-cuda
