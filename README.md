@@ -146,7 +146,7 @@ CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg yolov4-tiny.cf
 ## Testing
 
 ```
-python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --augment
+CUDA_VISIBLE_DEVICES=0 python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --augment
 ```
 
 ## Citation
