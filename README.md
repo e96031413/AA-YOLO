@@ -7,6 +7,12 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 - View our experiment environment infos [here](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/experiment-info.md)
 
+### 03/04更新：
+使用test.py針對Cross-Stitch架構進行AP測試時，必須到test.py的第43行將model.fuse()功能關閉
+```
+#model.fuse()
+```
+
 ### 02/08更新：
 新增detect.py計算FPS功能 (detect.py的第8行、138~140行、171行)
 ```
