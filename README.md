@@ -158,8 +158,8 @@ CUDA_VISIBLE_DEVICES=0 python test.py --data coco2017.data --cfg yolov4-tiny.cfg
 
 ## Inference
 ```
-python detect.py --weights yolov4-tiny.pt --img 416 --source file.mp4  # video
-                                                             file.jpg  # image 
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights yolov4-tiny.pt --img 416 --source file.mp4  # video
+                                                                                    file.jpg  # image 
 ```
 
 ## Citation
