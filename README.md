@@ -7,13 +7,13 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 - View our experiment environment infos [here](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/experiment-info.md)
 
-### 03/04更新：
+### 2021/03/04更新：
 使用test.py針對Cross-Stitch架構進行AP測試時，必須到test.py的第43行將model.fuse()功能關閉
 ```
 #model.fuse()
 ```
 
-### 02/08更新：
+### 2021/02/08更新：
 新增detect.py計算FPS功能 (detect.py的第8行、138~140行、171行)
 ```
 # line 8
@@ -40,14 +40,14 @@ pip install pycocotools
 python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --iou-thr 0.7 --batch-size 8
 ```
 
-### 01/10更新：
+### 2021/01/10更新：
 新增支援yolov4.conv.137的Pre-trained weight功能(在model.py第456~456行)
 ```
     elif file == 'yolov4.conv.137':
         cutoff = 137
 ```
 
-### 12/29更新：
+### 2020/12/29更新：
 新增YOLOv4-tiny的RouteGroup功能
 
 [Feature-request: YOLOv4-tiny #1350](https://github.com/ultralytics/yolov3/issues/1350#issuecomment-651602149)
@@ -66,7 +66,7 @@ python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.
 
 [Yolov4 with VGG Backbone](https://shihyung1221.medium.com/yolov4-with-vgg-backbone-ae0cedab4f0f)
 
-### 12/28更新：
+### 2020/12/28更新：
 新增以下四篇Paper的程式碼(在models.py、utils/layers.py)
 
 SE Block paper : [arxiv.org/abs/1709.01507](arxiv.org/abs/1709.01507)
@@ -78,7 +78,7 @@ ECA Block paper : [arxiv.org/abs/1910.03151](arxiv.org/abs/1910.03151)
 Funnel Activation for Visual Recognition : [arxiv.org/abs/2007.11824](arxiv.org/abs/2007.11824)
 
 
-### 12/1更新：
+### 2020/12/1更新：
 修改了PyTorch_YOLOv4的u3_preview當中，models.py第355行(支援pre-trained weight)、train.py第67行(支援32倍數的解析度)、dataset.py第262及267行(處理dataset相對路徑的問題)
 models.py line 355
 ```python
@@ -143,6 +143,11 @@ pip install git+https://github.com/thomasbrandon/mish-cuda/
 pip install -r requirements.txt
 ```
 ※ For running Mish models, please install https://github.com/thomasbrandon/mish-cuda
+
+## Download COCO 2017 dataset
+```
+sh data/get_coco.sh
+```
 
 ## Training
 
