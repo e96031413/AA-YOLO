@@ -124,7 +124,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 ## Requirements
 
 ```
-pip install git+https://github.com/thomasbrandon/mish-cuda/   # lower down the GPU memory consumption during training (from 12G -> 8G) 
+# lower down the GPU memory consumption during training (from 12G -> 8G) 
+pip install git+https://github.com/thomasbrandon/mish-cuda/
 pip install -r requirements.txt
 ```
 
