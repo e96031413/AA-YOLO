@@ -7,6 +7,9 @@ This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://g
 
 - View our experiment environment infos [here](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/experiment-info.md)
 
+### Development Log
+<details><summary> <b>Expand</b> </summary>
+
 ### 2021/03/04更新：
 使用test.py針對Cross-Stitch架構進行AP測試時，必須到test.py的第43行將model.fuse()功能關閉
 ```
@@ -135,6 +138,8 @@ darknet版本測出是40.2
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.484
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.612
 ```
+</details>
+
 
 ## Requirements
 
