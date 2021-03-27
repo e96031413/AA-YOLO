@@ -118,36 +118,15 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                               if os.path.splitext(x)[-1].lower() in img_formats]
             self.img_files = [x.replace('./', parent) if x.startswith('./') else x for x in self.img_files]    # add this
 ```
-透過[u3_preview](https://github.com/WongKinYiu/PyTorch_YOLOv4/tree/u3_preview?rgh-link-date=2020-11-24T04%3A40%3A32Z)版本經由以下指令訓練300個Epochs並進行testing得到的AP結果：
-```
-CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg yolov4-tiny.cfg --weights 'yolov4-tiny.conv.29' --name yolov4-tiny --img 416 416 416
-python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights weights/best.pt --img 416 --batch-size 8
-```
-darknet版本測出是40.2
-```
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.221
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.394
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.219
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.077
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.263
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.340
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.217
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.368
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.400
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.151
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.484
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.612
-```
 </details>
 
 
 ## Requirements
 
 ```
-pip install git+https://github.com/thomasbrandon/mish-cuda/
+pip install git+https://github.com/thomasbrandon/mish-cuda/   # lower down the GPU memory consumption during training (from 12G -> 8G) 
 pip install -r requirements.txt
 ```
-※ For running Mish models, please install https://github.com/thomasbrandon/mish-cuda
 
 ## Download COCO 2017 dataset
 ```
