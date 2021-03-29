@@ -120,11 +120,21 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 ```
 </details>
 
+## Experiment Environment
 
+Our environment setting on [https://www.twcc.ai/](TWCC)
+```
+NVIDIA-SMI 450.80.02    Driver Version: 450.80.02    CUDA Version: 11.0
+python 3.6.9 
+PyTorch 1.6.0
+Torchvision 0.7.0
+tensorflow-20.06-tf2-py3:tag1614508696283
+numpy 1.17.0
+```
 ## Requirements
 
 ```
-# lower down the GPU memory consumption during training (from 12G -> 8G) 
+# Install mish-cuda if you want to lower the GPU memory consumption during training (from 12G -> 8G) 
 pip install git+https://github.com/thomasbrandon/mish-cuda/
 pip install -r requirements.txt
 ```
