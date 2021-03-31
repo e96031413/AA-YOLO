@@ -135,7 +135,7 @@ numpy 1.17.0
 ## Important note!!!
 2021/03/31 update:
 
-Please do not use NAS (Network Attached Storage) to store the coco dataset, it will slow down the tranining speed. Store your dataset locally.
+**Please do not use NAS (Network Attached Storage) to store the coco dataset, it will slow down the tranining speed. Store your dataset locally.**
 
 ## Requirements
 
