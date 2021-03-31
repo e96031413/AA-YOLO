@@ -162,6 +162,11 @@ CUDA_VISIBLE_DEVICES=0 python detect.py --weights yolov4-tiny.pt --img 416 --sou
                                                                                     file.jpg  # image 
 ```
 
+## Training Result Visualization
+```
+python -c from utils import utils;utils.plot_results().
+```
+
 ## Citation
 
 ```
