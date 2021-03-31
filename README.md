@@ -131,6 +131,12 @@ Torchvision 0.7.0
 tensorflow-20.06-tf2-py3:tag1614508696283
 numpy 1.17.0
 ```
+
+## Important note!!!
+2021/03/31 update:
+
+Please do not use NAS (Network Attached Storage) to store the coco dataset, it will slow down the tranining speed. Store your dataset locally.
+
 ## Requirements
 
 ```
