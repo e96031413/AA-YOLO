@@ -40,7 +40,7 @@ pip install numpy==1.17
 #安裝pycocotools
 pip install pycocotools
 #執行test.py
-python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --iou-thr 0.7 --batch-size 8
+python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --augment
 ```
 
 ### 2021/01/10更新：
