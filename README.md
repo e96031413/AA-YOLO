@@ -155,18 +155,18 @@ sh data/get_coco.sh
 ## Training
 
 ```
-CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg yolov4-tiny.cfg --weights 'yolov4-tiny.conv.29' --name yolov4-tiny --img 416
+CUDA_VISIBLE_DEVICES=0 python train.py --data coco2017.data --cfg AA-YOLO-twin-head.cfg --weights 'yolov4-tiny.conv.29' --name yolov4-tiny --img 416
 ```
 
 ## Testing
 
 ```
-CUDA_VISIBLE_DEVICES=0 python test.py --data coco2017.data --cfg yolov4-tiny.cfg --weights yolov4-tiny.pt --img 416 --augment
+CUDA_VISIBLE_DEVICES=0 python test.py --data coco2017.data --cfg AA-YOLO-twin-head.cfg --weights yolov4-tiny.pt --img 416 --augment
 ```
 
 ## Inference
 ```
-CUDA_VISIBLE_DEVICES=0 python detect.py --weights yolov4-tiny.pt --img 416 --source file.mp4  # video
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights AA-YOLO-twin-head.pt --img 416 --source file.mp4  # video
                                                                                     file.jpg  # image 
 ```
 
