@@ -2,6 +2,8 @@
 
 This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://github.com/WongKinYiu/PyTorch_YOLOv4/tree/u3_preview) with some modification
 
+The AA-YOLO architecture file is at [AA-YOLO-twin-head.cfg](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/cfg/AA-YOLO-twin-head.cfg)
+
 - You can use this project to train 416x416 YOLOv4-tiny.
 [GitHub Issues](https://github.com/WongKinYiu/ScaledYOLOv4/issues/41)
 
