@@ -1,5 +1,9 @@
 # PyTorch_YOLOv4-tiny
 
+### Abstract
+With the rapid development of convolutional neural networks (CNNs), there are a variety of techniques that can improve existing CNN models, including attention mechanisms, activation functions, and data augmentation. However, integrating these techniques can lead to a significant increase in the number of parameters and FLOPs. Here, we integrated Efficient Channel Attention Net(ECA-Net), Mish activation function, All Convolutional Net (ALL-CNN), and a twin detection head architecture into YOLOv4-tiny, yielding an AP 50 of 44.2% on the MS COCO 2017 dataset. The proposed Attention ALL-CNN Twin Head YOLO (A 2 -YOLO) outperforms the original YOLOv4-tiny on the same dataset by 3.3% and reduces the model parameters by 7.26%. Source code is at https://github.com/e96031413/AA-YOLO
+
+### Note
 This project is based on [WongKinYiu/PyTorch_YOLOv4 u3_preview branch](https://github.com/WongKinYiu/PyTorch_YOLOv4/tree/u3_preview) with some modification
 
 The AA-YOLO architecture file is at [AA-YOLO-twin-head.cfg](https://github.com/e96031413/PyTorch_YOLOv4-tiny/blob/main/cfg/AA-YOLO-twin-head.cfg)
