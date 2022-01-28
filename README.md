@@ -1,5 +1,7 @@
 # Attention ALL-CNN Twin Head YOLO (AA -YOLO)
 
+Official implementation of **Improving Tiny YOLO with Fewer Model Parameters**, IEEE BigMM 2021
+
 ### Abstract
 With the rapid development of convolutional neural networks (CNNs), there are a variety of techniques that can improve existing CNN models, including attention mechanisms, activation functions, and data augmentation. However, integrating these techniques can lead to a significant increase in the number of parameters and FLOPs. Here, we integrated Efficient Channel Attention Net(ECA-Net), Mish activation function, All Convolutional Net (ALL-CNN), and a twin detection head architecture into YOLOv4-tiny, yielding an AP 50 of 44.2% on the MS COCO 2017 dataset. The proposed Attention ALL-CNN Twin Head YOLO (A 2 -YOLO) outperforms the original YOLOv4-tiny on the same dataset by 3.3% and reduces the model parameters by 7.26%. Source code is at https://github.com/e96031413/AA-YOLO
 
@@ -141,12 +143,12 @@ numpy 1.17.0
 ## Important note!!!
 2021/03/31 update:
 
-**Please do not use NAS (Network Attached Storage) to store the coco dataset, it might slow down the tranining speed. Store your dataset locally.**
+**Be careful to use NAS (Network Attached Storage) to store the coco dataset, it might slow down the tranining speed. Store your dataset locally.**
 
 ## Requirements
 
 ```
-# Install mish-cuda if you want to lower the GPU memory consumption during training (from 12G -> 8G) 
+# Install mish-cuda if you want to use fewer GPU memory during training (from 12G -> 8G) 
 pip install git+https://github.com/thomasbrandon/mish-cuda/
 pip install -r requirements.txt
 ```
@@ -180,30 +182,21 @@ python -c from utils import utils;utils.plot_results().
 ```
 
 ## Citation
-
 ```
-@article{bochkovskiy2020yolov4,
-  title={{YOLOv4}: Optimal Speed and Accuracy of Object Detection},
-  author={Bochkovskiy, Alexey and Wang, Chien-Yao and Liao, Hong-Yuan Mark},
-  journal={arXiv preprint arXiv:2004.10934},
-  year={2020}
-}
-```
-
-```
-@inproceedings{wang2020cspnet,
-  title={{CSPNet}: A New Backbone That Can Enhance Learning Capability of {CNN}},
-  author={Wang, Chien-Yao and Mark Liao, Hong-Yuan and Wu, Yueh-Hua and Chen, Ping-Yang and Hsieh, Jun-Wei and Yeh, I-Hau},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
-  pages={390--391},
-  year={2020}
-}
+@inproceedings{9643269,  
+    title={Improving Tiny YOLO with Fewer Model Parameters},
+    author={Liu, Yanwei and Ma, Ching-Wen},  
+    booktitle={2021 IEEE Seventh International Conference on Multimedia Big Data (BigMM)},   
+    pages={61-64},
+    year={2021},
+    doi={10.1109/BigMM52142.2021.00017}}
 ```
 
 ## Acknowledgements
 
 * [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 * [https://github.com/ultralytics/yolov3](https://github.com/ultralytics/yolov3)
+* [https://github.com/WongKinYiu/PyTorch_YOLOv4](https://github.com/WongKinYiu/PyTorch_YOLOv4)
 * [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
 * [HaloTrouvaille/YOLO-Multi-Backbones-Attention](https://github.com/HaloTrouvaille/YOLO-Multi-Backbones-Attention/tree/1f425d379783b6d132b44f14ecfd251d8e2448fa)
 * [SpursLipu/YOLOv3v4-ModelCompression-MultidatasetTraining-Multibackbone](https://github.com/SpursLipu/YOLOv3v4-ModelCompression-MultidatasetTraining-Multibackbone)
